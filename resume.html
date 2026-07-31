@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Prem Patil - Associate Project Manager Resume</title>
+<meta name="description" content="Prem Patil - Associate Project Manager. AI automation, FinTech, HealthTech delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ UI/UX PRO MAX COMPLIANCE ============
+   - Contrast 4.5:1 minimum (checked: text #2C241B on #FCF9F5 = 13:1, muted #6B6258 = 5.6:1)
+   - Focus states visible (a:focus-visible)
+   - 8px spacing grid
+   - Responsive 375/768/1024
+   - No emojis as icons (SVG only)
+   - prefers-reduced-motion respected
+=================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FCF9F5;--cream-2:#F8F4EE;--cream-3:#EFE9DF;
+  --orange:#D35400;--orange-hover:#B84A00;--orange-soft:rgba(211,84,0,0.08);
+  --orange-text:#BF4A00;
+  --dark:#2C241B;--muted:#6B6258;--faint:#766C60;
+  --border:#EFE9DF;--radius:12px;
+}
+html{scroll-behavior:smooth}
+body{background:#EFE9DF;color:var(--dark);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;font-size:14px}
+a{color:inherit;text-decoration:none}
+a:focus-visible,.focusable:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:4px}
+ul{list-style:none}
+
+/* ===== A4 SHEET ===== */
+.sheet{max-width:850px;margin:32px auto;background:var(--cream);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(44,36,27,0.10),0 2px 8px rgba(44,36,27,0.06)}
+@media print{.sheet{max-width:100%;margin:0;border-radius:0;box-shadow:none}body{background:#fff}.no-print{display:none!important}@page{size:A4;margin:12mm}}
+
+/* ===== HEADER ===== */
+.header{display:flex;gap:32px;align-items:center;padding:40px 48px 32px;background:linear-gradient(135deg,var(--cream) 0%,var(--cream-2) 60%,var(--cream-3) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:2px solid rgba(211,84,0,0.10);pointer-events:none}
+.header::before{content:'';position:absolute;right:40px;bottom:-80px;width:160px;height:160px;border-radius:50%;border:2px dashed rgba(211,84,0,0.08);pointer-events:none}
+.avatar{flex-shrink:0;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--orange);box-shadow:0 4px 16px rgba(211,84,0,0.18);background:#fff;transition:transform 0.3s ease}
+.avatar:hover{transform:scale(1.03)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.header-main{flex:1}
+.header-name{font-size:32px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:2px}
+.header-role{font-size:15px;font-weight:600;color:var(--orange-text);margin-bottom:10px}
+.header-contact{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
+.header-contact span{display:inline-flex;align-items:center;gap:5px}
+.header-contact svg{width:13px;height:13px;color:var(--orange);flex-shrink:0}
+.header-contact a{transition:color 0.2s ease}
+.header-contact a:hover{color:var(--orange)}
+
+/* ===== BODY LAYOUT ===== */
+.body{display:grid;grid-template-columns:1fr 2fr;gap:0}
+.col{padding:28px 32px 32px}
+.col-left{background:var(--cream-2);border-right:1px solid var(--border)}
+@media print{.col-left{background:var(--cream-2)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.col-right{padding-top:32px}
+
+/* ===== SECTION ===== */
+.section{margin-bottom:26px}
+.section:last-child{margin-bottom:0}
+.section-title{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;color:var(--orange-text);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.section-title svg{width:13px;height:13px;flex-shrink:0}
+
+/* ===== CONTACT BLOCK ===== */
+.contact-block{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.contact-row{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--muted);line-height:1.45}
+.contact-row svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px}
+.contact-row a:hover{color:var(--orange)}
+
+/* ===== SKILLS ===== */
+.skill-group{margin-bottom:14px}
+.skill-group:last-child{margin-bottom:0}
+.skill-group-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--faint);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.skill-tag{font-size:11px;font-weight:500;padding:4px 9px;border-radius:20px;background:var(--cream);border:1px solid var(--border);color:var(--muted);transition:all 0.2s ease}
+.skill-tag:hover{background:var(--orange-soft);border-color:var(--orange);color:var(--orange)}
+@media print{.skill-tag{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ===== SUMMARY ===== */
+.summary{font-size:13px;color:var(--muted);line-height:1.65}
+.summary strong{color:var(--dark);font-weight:600}
+
+/* ===== EXPERIENCE ===== */
+.job{margin-bottom:24px;position:relative;padding-left:16px}
+.job:last-child{margin-bottom:0}
+.job::before{content:'';position:absolute;left:0;top:6px;width:3px;height:calc(100% - 12px);border-radius:2px;background:linear-gradient(180deg,var(--orange),rgba(211,84,0,0.15))}
+.job-role{font-size:15px;font-weight:600;color:var(--dark);line-height:1.3}
+.job-company{font-size:13px;font-weight:500;color:var(--orange-text);margin-top:1px}
+.job-meta{font-size:11px;color:var(--faint);font-family:'JetBrains Mono',monospace;margin:3px 0 8px}
+.job-bullets{display:flex;flex-direction:column;gap:5px}
+.job-bullets li{font-size:12.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative}
+.job-bullets li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);opacity:0.5}
+
+/* ===== EDUCATION / CERTS ===== */
+.edu{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.edu strong{color:var(--dark);display:block;font-size:13px}
+.edu span{display:block;font-size:11px;color:var(--faint);margin-top:1px}
+.cert{font-size:12px;color:var(--muted);padding:7px 10px;border-radius:8px;background:var(--cream);border:1px solid var(--border);margin-bottom:6px;transition:all 0.2s ease;display:flex;gap:8px;align-items:center}
+.cert:last-child{margin-bottom:0}
+.cert:hover{border-color:var(--orange);background:var(--orange-soft)}
+.cert svg{width:13px;height:13px;color:var(--orange);flex-shrink:0}
+.cert-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:5px}
+
+/* ===== PRINT ACTIONS ===== */
+.actions{max-width:850px;margin:0 auto 32px;display:flex;gap:10px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:all 0.25s ease;background:var(--dark);color:var(--cream)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(44,36,27,0.18)}
+.btn svg{width:14px;height:14px}
+.btn-outline{background:transparent;color:var(--dark);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-soft)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .body{grid-template-columns:1fr}
+  .col-left{border-right:none;border-bottom:1px solid var(--border)}
+  .header{flex-direction:column;text-align:center;padding:32px 24px 24px}
+  .header-contact{justify-content:center}
+  .sheet{margin:16px;border-radius:12px}
+  .actions{margin:0 16px 24px;flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .header-name{font-size:26px}
+  .col{padding:22px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="actions no-print">
+  <button class="btn" onclick="window.print()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+    Save as PDF
+  </button>
+  <a href="mailto:prempatil140398@gmail.com" class="btn btn-outline">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4 12 13 2 4"/></svg>
+    Email Me
+  </a>
+  <a href="https://linkedin.com/in/prem-patil143" target="_blank" rel="noopener" class="btn btn-outline">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v6"/><path d="M8 8v.01"/><path d="M12 17v-5"/><path d="M16 17v-3a2 2 0 00-4 0"/></svg>
+    LinkedIn
+  </a>
+</div>
+
+<div class="sheet">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="avatar">
+      <img src="assets/resume-photo.png" alt="Prem Patil" width="120" height="120">
+    </div>
+    <div class="header-main">
+      <h1 class="header-name">Prem Patil</h1>
+      <div class="header-role">Associate Project Manager / Project Manager</div>
+      <div class="header-contact">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Mumbai, India</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 4 12 13 2 4"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:prempatil140398@gmail.com">prempatil140398@gmail.com</a></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v6"/><path d="M8 8v.01"/><path d="M12 17v-5"/><path d="M16 17v-3a2 2 0 00-4 0"/></svg><a href="https://linkedin.com/in/prem-patil143" target="_blank" rel="noopener">linkedin.com/in/prem-patil143</a></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg>+91 84338 90622</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- LEFT COLUMN -->
+    <aside class="col col-left">
+
+      <div class="contact-block">
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Mumbai, India
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 4 12 13 2 4"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          <a href="mailto:prempatil140398@gmail.com">prempatil140398@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg>
+          <span>+91 84338 90622</span>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v6"/><path d="M8 8v.01"/><path d="M12 17v-5"/><path d="M16 17v-3a2 2 0 00-4 0"/></svg>
+          <a href="https://linkedin.com/in/prem-patil143" target="_blank" rel="noopener">linkedin.com/in/prem-patil143</a>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          Skills
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Project Management</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Agile Delivery</span>
+            <span class="skill-tag">Sprint Planning</span>
+            <span class="skill-tag">Risk Management</span>
+            <span class="skill-tag">Stakeholder Mgmt</span>
+            <span class="skill-tag">Release Planning</span>
+            <span class="skill-tag">Resource Planning</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">AI and Automation</div>
+          <div class="skill-tags">
+            <span class="skill-tag">AI Workflow Planning</span>
+            <span class="skill-tag">Process Automation</span>
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">RAG Planning</span>
+            <span class="skill-tag">AI Evaluation</span>
+            <span class="skill-tag">Prompt Strategy</span>
+            <span class="skill-tag">LLM Integration</span>
+            <span class="skill-tag">Human-in-the-loop</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Jira</span><span class="skill-tag">Figma</span><span class="skill-tag">Miro</span>
+            <span class="skill-tag">Trello</span><span class="skill-tag">Notion</span><span class="skill-tag">Confluence</span>
+            <span class="skill-tag">Draw.io</span><span class="skill-tag">Git</span><span class="skill-tag">Supabase</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Domain</div>
+          <div class="skill-tags">
+            <span class="skill-tag">FinTech</span><span class="skill-tag">HealthTech</span><span class="skill-tag">TravelTech</span>
+            <span class="skill-tag">FoodTech</span><span class="skill-tag">SaaS</span><span class="skill-tag">Enterprise</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Education
+        </div>
+        <div class="edu">
+          <strong>B.Sc. Information Technology</strong>
+          Shankar Narayan College of Arts &amp; Commerce, Mumbai
+          <span>Jul 2017 - Apr 2020</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg>
+          Certifications
+        </div>
+        <div class="cert"><span class="cert-dot"></span>PMI - CPMAI Introduction (3 PDUs)</div>
+        <div class="cert"><span class="cert-dot"></span>Anthropic - Introduction to Agent Skills</div>
+        <div class="cert"><span class="cert-dot"></span>Anthropic - Building with the Claude API</div>
+        <div class="cert"><span class="cert-dot"></span>Anthropic - Claude Code in Action</div>
+        <div class="cert"><span class="cert-dot"></span>Anthropic - Model Context Protocol (MCP)</div>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT COLUMN -->
+    <main class="col col-right">
+
+      <div class="section">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Profile
+        </div>
+        <p class="summary">
+          Associate Project Manager with <strong>3+ years</strong> delivering AI automation and software projects. Proven track record leading AI engineering teams, designing AI workflow solutions, and building standardized delivery processes. Currently leading the AI department at OyeLabs, managing a team of <strong>6 AI engineers</strong> and driving end-to-end execution across FinTech, HealthTech, FoodTech, and TravelTech.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 13.3A8 8 0 016.7 3a8 8 0 1014.3 10.3z"/></svg>
+          Experience
+        </div>
+
+        <div class="job">
+          <div class="job-role">Associate Project Manager</div>
+          <div class="job-company">OyeLabs Technologies Pvt. Ltd. (Remote)</div>
+          <div class="job-meta">Oct 2025 - Present</div>
+          <ul class="job-bullets">
+            <li>Lead the AI department managing 4 AI Engineers and 2 AI Automation Engineers; oversee end-to-end delivery of AI automation projects across FinTech, HealthTech, FoodTech, and TravelTech.</li>
+            <li>Delivered Multi-Channel AI Sales Lead Automation using n8n + GoHighLevel; automated capture across WhatsApp, web forms, and live chat with AI qualification, language detection, deduplication, and smart assignment; achieved zero lead miss rate.</li>
+            <li>Standardized AI automation delivery with a 7-phase framework (Research, Requirements, QA and Gap Analysis, Risk Assessment, Solution Planning, Execution, Testing) plus reusable SOP templates, node-level technical documentation, and prompt libraries adopted across the AI department.</li>
+            <li>Managed a 12-person cross-functional team across 4+ concurrent client projects with 80% on-time delivery rate.</li>
+            <li>Identified critical data access and AI expertise gaps during FinTech AI platform discovery; restructured roadmap into phased milestones, preventing rework from production schema mismatches.</li>
+            <li>Facilitated end-to-end client engagement for 5+ organizations; led discovery workshops, sprint planning, weekly status meetings, milestone reviews, and delivery discussions.</li>
+            <li>Authored 50+ structured product documents including PRDs, user stories, functional specs, architecture diagrams, discovery reports, and roadmaps.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-role">Project Management Consultant</div>
+          <div class="job-company">University of Mumbai</div>
+          <div class="job-meta">Jun 2025 - Oct 2025</div>
+          <ul class="job-bullets">
+            <li>Led delivery of a digital incubation platform now active across 800+ affiliated colleges; coordinated university stakeholders, incubator managers, and government officials.</li>
+            <li>Facilitated roadmap planning, sprint planning, requirement gathering, and delivery coordination for a large multi-stakeholder project.</li>
+            <li>Managed scope, risk, and stakeholder communication across the full project lifecycle.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-role">Founder, Product and Operations</div>
+          <div class="job-company">AI Chef Master</div>
+          <div class="job-meta">Apr 2023 - May 2025</div>
+          <ul class="job-bullets">
+            <li>Conducted market research and customer validation for an AI-powered cooking and nutrition assistant.</li>
+            <li>Owned product planning, PRDs, wireframing, prototype planning, and feature prioritization.</li>
+            <li>Developed business plan, product roadmap, and go-to-market strategy, demonstrating end-to-end product thinking.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-role">Assistant Manager</div>
+          <div class="job-company">Saraswati Engineering Works</div>
+          <div class="job-meta">Jan 2018 - Mar 2019</div>
+          <ul class="job-bullets">
+            <li>Managed client communication and vendor relationships; coordinated delivery timelines and procurement follow-up.</li>
+            <li>Provided operations support for engineering projects, ensuring timely delivery and stakeholder alignment.</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+document.addEventListener('keydown', (e) => {
+  if((e.ctrlKey || e.metaKey) && e.key === 'p'){ e.preventDefault(); window.print(); }
+});
+</script>
+</body>
+</html>
