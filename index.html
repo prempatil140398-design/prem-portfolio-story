@@ -111,18 +111,19 @@ img{max-width:100%;display:block}
 /* ===== how i think ===== */
 .think{background:var(--bg-2)}
 .framework{margin-top:72px;display:flex;flex-direction:column;gap:0;max-width:760px;position:relative}
-.f-progress{position:absolute;left:20px;top:2px;bottom:2px;width:2px;background:var(--orange);transform:scaleY(0);transform-origin:top;z-index:0;border-radius:2px;box-shadow:0 0 8px rgba(211,84,0,.35)}
-.f-step{display:flex;align-items:center;gap:32px;padding:26px 0;position:relative}
-.f-step .num{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--orange-text);width:44px;flex-shrink:0;margin-left:12px}
-.f-step .name{font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:-.02em;color:var(--ink)}
-.f-step .desc{display:none}
-.f-step::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:var(--line)}
+.f-progress{position:absolute;left:20px;top:2px;bottom:2px;width:3px;background:var(--orange);transform:scaleY(0);transform-origin:top;z-index:0;border-radius:3px;box-shadow:0 0 8px rgba(211,84,0,.35)}
+.f-step{position:relative;display:flex;gap:28px;padding:24px 0}
+.f-step .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--orange-text);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;display:block}
+.f-step .name{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;display:block}
+.f-step::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:3px;background:var(--line)}
 .f-step:first-child::before{top:50%}
 .f-step:last-child::before{bottom:50%}
-.f-step .dot{position:absolute;left:20px;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:var(--bg-2);border:2.5px solid var(--orange);z-index:1;transition:background .3s,box-shadow .3s}
-.f-step.done .dot{background:var(--orange);box-shadow:0 0 0 5px rgba(211,84,0,.14)}
+.f-step .dot{position:absolute;left:-39px;top:24px;width:21px;height:21px;border-radius:50%;background:var(--bg-2);border:3px solid var(--orange);z-index:2;flex-shrink:0;transition:background .4s,box-shadow .4s,transform .3s}
+.f-step.done .dot{background:var(--orange);box-shadow:0 0 0 6px rgba(211,84,0,.18);transform:scale(1.08)}
+.f-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px 28px;flex:1;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.f-card:hover{transform:translateX(6px);border-color:rgba(211,84,0,.35);box-shadow:0 12px 30px rgba(44,36,27,.08)}
 .f-step .arrow{display:none}
-.f-arrow{margin-left:52px;color:var(--orange);font-size:20px;line-height:0}
+.f-arrow{display:none}
 
 /* ===== decisions ===== */
 .decision{padding-bottom:0}
@@ -158,7 +159,7 @@ img{max-width:100%;display:block}
 .p-card-metrics{display:flex;flex-wrap:wrap;gap:10px}
 .p-metric{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--text-3);border:1px solid var(--line);padding:6px 11px;border-radius:6px;background:var(--bg-2)}
 .p-metric b{color:var(--orange-text);font-weight:600}
-.p-metric.status-live{color:var(--orange);border-color:rgba(211,84,0,.5);background:rgba(211,84,0,.1);font-weight:600}
+.p-metric.status-live{color:#27AE60;border-color:rgba(39,174,96,.5);background:rgba(39,174,96,.1);font-weight:600}
 .p-metric.status-delivered{color:var(--text-2);border-color:var(--line);background:var(--bg-2);font-weight:500}
 .p-card-foot{display:flex;align-items:center;gap:10px;margin-top:24px;flex-wrap:wrap}
 .p-delivery{font-size:12.5px;color:var(--text-3);font-family:'JetBrains Mono',monospace}
@@ -185,7 +186,7 @@ img{max-width:100%;display:block}
 .results .chapter-no{color:var(--orange-dark)}
 .results .big,.results .mid{color:#FCF9F5}
 .results .lede{color:rgba(252,249,245,.72)}
-.r-grid{margin-top:72px;display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.r-grid{margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
 .r-item{border-top:1.5px solid rgba(252,249,245,.25);padding-top:20px}
 .r-num{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--orange);line-height:1}
 .r-num .u{font-size:.45em;font-weight:600;color:rgba(252,249,245,.8)}
@@ -212,10 +213,15 @@ img{max-width:100%;display:block}
 .j-future .j-card:hover{border-color:var(--orange);box-shadow:0 12px 30px rgba(211,84,0,.12)}
 
 /* ===== tools orbit ===== */
-.tools{overflow:hidden}
-.tools-wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.tools{overflow:visible}
+.tools-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
 .tools-wrap .chapter-no{text-align:center}
 .tools-wrap .mid{max-width:620px;margin:0 auto}
+.skills-sidebar{position:absolute;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.04em;white-space:nowrap;pointer-events:none}
+.skills-sidebar.left{right:calc(100% + 60px);text-align:right;padding-right:16px;border-right:1px solid var(--line)}
+.skills-sidebar.right{left:calc(100% + 60px);text-align:left;padding-left:16px;border-left:1px solid var(--line)}
+.skills-sidebar span{transition:color .3s,transform .3s}
+.orbit:hover .skills-sidebar span{color:var(--ink)}
 .orbit{position:relative;width:min(500px,84vw);height:min(500px,84vw);margin:56px auto 0;--r:calc(min(500px,84vw) / 2 - 52px)}
 .orbit-ring{position:absolute;inset:0;animation:orbitSpin 42s linear infinite}
 @keyframes orbitSpin{to{transform:rotate(360deg)}}
@@ -228,6 +234,10 @@ img{max-width:100%;display:block}
 .orbit-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:128px;height:128px;border-radius:50%;background:var(--dark);color:var(--bg);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 18px 44px rgba(44,36,27,.28)}
 .orbit-center span{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 .orbit-center::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1.5px dashed rgba(211,84,0,.5);animation:orbitSpin 30s linear infinite}
+
+@media(max-width:1200px){
+  .skills-sidebar{display:none}
+}
 
 /* ===== closing ===== */
 .close{padding:180px 40px;text-align:center}
@@ -358,15 +368,11 @@ img{max-width:100%;display:block}
 
     <div class="framework" id="framework">
       <div class="f-progress" aria-hidden="true"></div>
-      <div class="f-step"><span class="dot"></span><span class="num">01</span><span class="name">Understand Business</span></div>
-      <div class="f-arrow">↓</div>
-      <div class="f-step"><span class="dot"></span><span class="num">02</span><span class="name">Identify Risks</span></div>
-      <div class="f-arrow">↓</div>
-      <div class="f-step"><span class="dot"></span><span class="num">03</span><span class="name">Simplify Process</span></div>
-      <div class="f-arrow">↓</div>
-      <div class="f-step"><span class="dot"></span><span class="num">04</span><span class="name">Deliver Faster</span></div>
-      <div class="f-arrow">↓</div>
-      <div class="f-step"><span class="dot"></span><span class="num">05</span><span class="name">Improve Continuously</span></div>
+      <div class="f-step"><span class="dot"></span><div class="f-card"><span class="num">01</span><span class="name">Understand Business</span></div></div>
+      <div class="f-step"><span class="dot"></span><div class="f-card"><span class="num">02</span><span class="name">Identify Risks</span></div></div>
+      <div class="f-step"><span class="dot"></span><div class="f-card"><span class="num">03</span><span class="name">Simplify Process</span></div></div>
+      <div class="f-step"><span class="dot"></span><div class="f-card"><span class="num">04</span><span class="name">Deliver Faster</span></div></div>
+      <div class="f-step"><span class="dot"></span><div class="f-card"><span class="num">05</span><span class="name">Improve Continuously</span></div></div>
     </div>
   </div>
 </section>
@@ -462,7 +468,7 @@ img{max-width:100%;display:block}
               <span class="p-metric"><b>10-13k</b> monthly DB transactions</span>
               <span class="p-metric"><b>8</b> engineers</span>
               <span class="p-metric"><b>6-month</b> roadmap</span>
-              <span class="p-metric status-live">Live</span>
+              <span class="p-metric status-live">Currently Ongoing</span>
             </div>
             <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
           </article>
@@ -535,9 +541,8 @@ img{max-width:100%;display:block}
     <div class="r-grid">
       <div class="r-item reveal"><div class="r-num"><span data-count="80">0</span><span class="u">%</span></div><p class="r-label">On-time delivery across client projects</p><p class="r-note">Tracked per sprint and milestone</p></div>
       <div class="r-item reveal reveal-d1"><div class="r-num"><span data-count="12">0</span><span class="u">+</span></div><p class="r-label">Cross-functional team members coordinated</p><p class="r-note">Dev, QA, UI/UX, AI engineers</p></div>
-      <div class="r-item reveal reveal-d2"><div class="r-num"><span data-count="4">0</span></div><p class="r-label">International clients delivered</p><p class="r-note">Canada, Saudi Arabia, Lebanon, and more</p></div>
+      <div class="r-item reveal reveal-d2"><div class="r-num"><span data-count="5">0</span></div><p class="r-label">International clients delivered</p><p class="r-note">Canada, Saudi Arabia, Lebanon, and more</p></div>
       <div class="r-item reveal reveal-d3"><div class="r-num"><span data-count="0">0</span><span class="u">%</span></div><p class="r-label">Lead miss after sales automation</p><p class="r-note">Down from ~20%</p></div>
-      <div class="r-item reveal reveal-d4"><div class="r-num"><span data-count="6">0</span><span class="u">+</span></div><p class="r-label">Concurrent projects managed</p><p class="r-note">Parallel delivery, zero timeline overlap</p></div>
     </div>
   </div>
 </section>
@@ -546,7 +551,7 @@ img{max-width:100%;display:block}
   <div class="wrap journey-wrap">
     <p class="chapter-no reveal">06 / The Journey</p>
     <h2 class="big split reveal">Four stages. One <span class="accent">compounding path.</span></h2>
-    <p class="lede reveal reveal-d1" style="margin-top:28px">Operations → Founder → Enterprise Stakeholder → AI Project Management. Each stage built the muscle the next one needed.</p>
+    <p class="lede reveal reveal-d1" style="margin-top:28px">Operations to Founder to Enterprise Stakeholder to AI Project Management. Each stage built the muscle the next one needed.</p>
 
     <div class="journey-timeline" id="journeyTimeline">
       <div class="journey-progress" aria-hidden="true"></div>
@@ -604,6 +609,13 @@ img{max-width:100%;display:block}
     <p class="chapter-no reveal">07 / Toolkit</p>
     <h2 class="mid split reveal">The stack behind the delivery.</h2>
     <div class="orbit reveal" id="orbit">
+      <div class="skills-sidebar left">
+        <span>Stakeholder Management</span>
+        <span>Roadmap Planning</span>
+        <span>Sprint Execution</span>
+        <span>Risk Management</span>
+        <span>Delivery Coordination</span>
+      </div>
       <div class="orbit-center"><span>Tools</span></div>
       <div class="orbit-ring">
         <div class="orbit-item" style="--a:0.0deg"><div class="orbit-item-inner"><svg viewBox="0 0 24 24" fill="#0052CC" role="img" aria-label="Jira"><title>Jira</title><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg><span>Jira</span></div></div>
@@ -619,11 +631,18 @@ img{max-width:100%;display:block}
         <div class="orbit-item" style="--a:327.3deg"><div class="orbit-item-inner"><svg viewBox="0 0 24 24" fill="#D97757" role="img" aria-label="Claude"><title>Claude</title><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude</span></div></div>
       </div>
     </div>
-  </div>
-</section>
+          <div class="skills-sidebar right">
+            <span>Jira · Trello</span>
+            <span>Figma · Miro</span>
+            <span>Git · GitHub</span>
+            <span>Notion · Slack</span>
+            <span>n8n · Supabase</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-<section class="section close" id="contact">
+    <section class="section close" id="contact">
   <div class="wrap">
     <h2 class="close-statement split reveal">Great projects aren't delivered by accident. They're delivered through <span class="accent">better decisions</span>.</h2>
     <div class="close-cta reveal reveal-d2">
