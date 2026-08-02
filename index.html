@@ -113,7 +113,7 @@ img{max-width:100%;display:block}
 .framework{margin-top:72px;display:flex;flex-direction:column;gap:0;max-width:760px;position:relative}
 .f-progress{position:absolute;left:20px;top:2px;bottom:2px;width:2px;background:var(--orange);transform:scaleY(0);transform-origin:top;z-index:0;border-radius:2px;box-shadow:0 0 8px rgba(211,84,0,.35)}
 .f-step{display:flex;align-items:center;gap:32px;padding:26px 0;position:relative}
-.f-step .num{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--orange-text);width:44px;flex-shrink:0}
+.f-step .num{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--orange-text);width:44px;flex-shrink:0;margin-left:12px}
 .f-step .name{font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:-.02em;color:var(--ink)}
 .f-step .desc{display:none}
 .f-step::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:var(--line)}
@@ -158,6 +158,8 @@ img{max-width:100%;display:block}
 .p-card-metrics{display:flex;flex-wrap:wrap;gap:10px}
 .p-metric{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--text-3);border:1px solid var(--line);padding:6px 11px;border-radius:6px;background:var(--bg-2)}
 .p-metric b{color:var(--orange-text);font-weight:600}
+.p-metric.status-live{color:var(--orange);border-color:rgba(211,84,0,.5);background:rgba(211,84,0,.1);font-weight:600}
+.p-metric.status-delivered{color:var(--text-2);border-color:var(--line);background:var(--bg-2);font-weight:500}
 .p-card-foot{display:flex;align-items:center;gap:10px;margin-top:24px;flex-wrap:wrap}
 .p-delivery{font-size:12.5px;color:var(--text-3);font-family:'JetBrains Mono',monospace}
 .p-delivery b{color:var(--ink);font-weight:600}
@@ -170,7 +172,7 @@ img{max-width:100%;display:block}
 /* ===== leadership ===== */
 .lead-statement{font-size:clamp(30px,4.6vw,58px);font-weight:700;letter-spacing:-.03em;line-height:1.12;color:var(--ink);max-width:900px}
 .lead-statement .accent{color:var(--orange)}
-.lead-points{margin-top:72px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px}
+.lead-points{margin-top:72px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .lp{display:flex;gap:16px;padding:24px;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;transition:transform .3s var(--ease),border-color .3s}
 .lp:hover{transform:translateY(-3px);border-color:rgba(211,84,0,.35)}
 .lp .ic{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:rgba(211,84,0,.09);display:flex;align-items:center;justify-content:center;color:var(--orange)}
@@ -183,7 +185,7 @@ img{max-width:100%;display:block}
 .results .chapter-no{color:var(--orange-dark)}
 .results .big,.results .mid{color:#FCF9F5}
 .results .lede{color:rgba(252,249,245,.72)}
-.r-grid{margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.r-grid{margin-top:72px;display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
 .r-item{border-top:1.5px solid rgba(252,249,245,.25);padding-top:20px}
 .r-num{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--orange);line-height:1}
 .r-num .u{font-size:.45em;font-weight:600;color:rgba(252,249,245,.8)}
@@ -452,67 +454,65 @@ img{max-width:100%;display:block}
     <p class="lede reveal reveal-d1" style="margin-top:28px">The projects behind the decisions. Delivered end to end, across FinTech, TravelTech, FoodTech, and AI automation.</p>
 
     <div class="p-grid">
-      <article class="p-card reveal">
-        <p class="p-card-tag">FinTech / AI</p>
-        <h3 class="p-card-title">JennaHQ</h3>
-        <p class="p-card-desc">AI financial coaching platform. Led discovery, technical assessment, AI workflow planning, sprint planning, and client coordination.</p>
-        <div class="p-card-metrics">
-          <span class="p-metric"><b>5,000+</b> users</span>
-          <span class="p-metric"><b>10-13k</b> monthly DB transactions</span>
-          <span class="p-metric"><b>8</b> engineers</span>
-          <span class="p-metric"><b>6-month</b> roadmap</span>
-        </div>
-        <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-      </article>
+          <article class="p-card reveal">
+            <p class="p-card-tag">FinTech / AI</p>
+            <h3 class="p-card-title">JennaHQ</h3>
+            <div class="p-card-metrics">
+              <span class="p-metric"><b>5,000+</b> users</span>
+              <span class="p-metric"><b>10-13k</b> monthly DB transactions</span>
+              <span class="p-metric"><b>8</b> engineers</span>
+              <span class="p-metric"><b>6-month</b> roadmap</span>
+              <span class="p-metric status-live">Live</span>
+            </div>
+            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
+          </article>
 
-      <article class="p-card reveal reveal-d1">
-        <p class="p-card-tag">AI Automation</p>
-        <h3 class="p-card-title">Multi-Channel AI Sales Automation</h3>
-        <p class="p-card-desc">Centralized lead pipeline on Supabase with GoHighLevel as the CRM layer. AI workflow planning, automation design, and model selection.</p>
-        <div class="p-card-metrics">
-          <span class="p-metric"><b>0</b> lead miss</span>
-          <span class="p-metric">was <b>20%</b></span>
-          <span class="p-metric">In production</span>
-        </div>
-        <div class="p-card-foot"><span class="p-delivery">Internal pipeline, <b>OyeLabs</b></span></div>
-      </article>
+          <article class="p-card reveal reveal-d1">
+            <p class="p-card-tag">AI Automation</p>
+            <h3 class="p-card-title">Multi-Channel AI Sales Automation</h3>
+            <div class="p-card-metrics">
+              <span class="p-metric"><b>0</b> lead miss</span>
+              <span class="p-metric">was <b>20%</b></span>
+              <span class="p-metric status-live">In Production</span>
+            </div>
+            <div class="p-card-foot"><span class="p-delivery">Internal pipeline, <b>OyeLabs</b></span></div>
+          </article>
 
-      <article class="p-card reveal">
-        <p class="p-card-tag">TravelTech</p>
-        <h3 class="p-card-title">Travolyo</h3>
-        <p class="p-card-desc">Travel booking platform with hotel, flight, villa, tour, and event modules. Product planning support and sprint coordination.</p>
-        <div class="p-card-metrics">
-          <span class="p-metric"><b>2-month</b> delivery</span>
-          <span class="p-metric"><b>5</b> booking modules</span>
-          <span class="p-metric">On time</span>
-        </div>
-        <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-      </article>
+          <article class="p-card reveal">
+            <p class="p-card-tag">TravelTech</p>
+            <h3 class="p-card-title">Travolyo</h3>
+            <div class="p-card-metrics">
+              <span class="p-metric"><b>2-month</b> delivery</span>
+              <span class="p-metric"><b>5</b> booking modules</span>
+              <span class="p-metric status-delivered">Delivered</span>
+            </div>
+            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
+          </article>
 
-      <article class="p-card reveal reveal-d1">
-        <p class="p-card-tag">FoodTech</p>
-        <h3 class="p-card-title">Hunger Point</h3>
-        <p class="p-card-desc">Food technology platform. Feature prioritization, delivery coordination, and customer workflow improvements.</p>
-        <div class="p-card-metrics">
-          <span class="p-metric"><b>4-month</b> delivery</span>
-          <span class="p-metric"><b>0</b> meetings</span>
-          <span class="p-metric">Bilingual</span>
-        </div>
-        <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-      </article>
+          <article class="p-card reveal reveal-d1">
+            <p class="p-card-tag">FoodTech</p>
+            <h3 class="p-card-title">Hunger Point</h3>
+            <div class="p-card-metrics">
+              <span class="p-metric"><b>4-month</b> delivery</span>
+              <span class="p-metric"><b>0</b> meetings</span>
+              <span class="p-metric">Bilingual</span>
+              <span class="p-metric status-delivered">Delivered</span>
+            </div>
+            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
+          </article>
 
-      <article class="p-card p-compact reveal">
-        <p class="p-card-tag">Independent / Education</p>
-        <h3 class="p-card-title">MU Ideas</h3>
-        <p class="p-card-desc">Digital incubation platform for the University of Mumbai. Led delivery as a freelance project management consultant.</p>
-        <div class="p-facts">
-          <div class="p-fact"><span class="k">Impact</span><span>Active across <b>800+ colleges</b></span></div>
-          <div class="p-fact"><span class="k">Scope</span><span>Government project, multi-stakeholder (university, incubators, officials)</span></div>
-          <div class="p-fact"><span class="k">Delivery</span><span>Roadmap, sprint planning, requirements, and delivery coordination</span></div>
+          <article class="p-card p-compact reveal">
+            <p class="p-card-tag">Enterprise / Public Sector</p>
+            <h3 class="p-card-title">MU Ideas</h3>
+            <p class="p-card-desc">Digital incubation platform for the University of Mumbai. Led delivery as a freelance project management consultant.</p>
+            <div class="p-facts">
+              <div class="p-fact"><span class="k">Impact</span><span>Active across <b>800+ colleges</b></span></div>
+              <div class="p-fact"><span class="k">Scope</span><span>Government project, multi-stakeholder (university, incubators, officials)</span></div>
+              <div class="p-fact"><span class="k">Delivery</span><span>Roadmap, sprint planning, requirements, and delivery coordination</span></div>
+            </div>
+            <div class="p-card-foot"><span class="p-delivery">Freelance Consultant</span></div>
+          </article>
         </div>
-      </article>
-    </div>
-  </div>
 </section>
 
 <section class="section" id="leadership">
@@ -537,6 +537,7 @@ img{max-width:100%;display:block}
       <div class="r-item reveal reveal-d1"><div class="r-num"><span data-count="12">0</span><span class="u">+</span></div><p class="r-label">Cross-functional team members coordinated</p><p class="r-note">Dev, QA, UI/UX, AI engineers</p></div>
       <div class="r-item reveal reveal-d2"><div class="r-num"><span data-count="4">0</span></div><p class="r-label">International clients delivered</p><p class="r-note">Canada, Saudi Arabia, Lebanon, and more</p></div>
       <div class="r-item reveal reveal-d3"><div class="r-num"><span data-count="0">0</span><span class="u">%</span></div><p class="r-label">Lead miss after sales automation</p><p class="r-note">Down from ~20%</p></div>
+      <div class="r-item reveal reveal-d4"><div class="r-num"><span data-count="6">0</span><span class="u">+</span></div><p class="r-label">Concurrent projects managed</p><p class="r-note">Parallel delivery, zero timeline overlap</p></div>
     </div>
   </div>
 </section>
