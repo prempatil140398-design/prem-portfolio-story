@@ -180,15 +180,16 @@ img{max-width:100%;display:block}
 .p-expand-btn svg{flex-shrink:0}
 
 /* ===== project modal ===== */
-.project-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
+.project-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;touch-action:auto}
 .project-modal.open{display:flex}
 .modal-backdrop{position:absolute;inset:0;background:rgba(44,36,27,.7);backdrop-filter:blur(4px);animation:fadeIn .2s var(--ease)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-content{position:relative;z-index:1;width:100%;max-width:880px;max-height:85vh;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:slideUp .3s var(--ease);display:flex;flex-direction:column;touch-action:auto}
+.modal-content{position:relative;z-index:1;width:100%;max-width:880px;max-height:85vh;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:slideUp .3s var(--ease);display:flex;flex-direction:column;touch-action:auto;pointer-events:auto}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .modal-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);font-size:24px;line-height:1;color:var(--text-2);cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .modal-close:hover{background:var(--orange);border-color:var(--orange);color:var(--bg)}
 .modal-body{padding:32px;overflow-y:auto;max-height:calc(85vh - 64px);-webkit-overflow-scrolling:touch;touch-action:auto;overscroll-behavior:contain}
+.modal-body * {touch-action:auto}
 .modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .modal-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .modal-title-row .p-metric{flex-shrink:0}
@@ -1154,6 +1155,13 @@ img{max-width:100%;display:block}
       lenis.stop();
     }
 
+    // Prevent Lenis from intercepting wheel events on modal
+    // Lenis attaches wheel listeners to window - we need to stop propagation
+    modal._wheelHandler = function(e) {
+      e.stopPropagation();
+    };
+    modal.addEventListener('wheel', modal._wheelHandler, { passive: false });
+
     // Focus trap
     var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     var firstFocusable = focusable[0];
@@ -1183,6 +1191,12 @@ img{max-width:100%;display:block}
     // Restart Lenis smooth scroll when modal closes
     if (lenis) {
       lenis.start();
+    }
+
+    // Clean up wheel handler
+    if (modal._wheelHandler) {
+      modal.removeEventListener('wheel', modal._wheelHandler, { passive: false });
+      modal._wheelHandler = null;
     }
 
     if (modal._focusTrap) {
