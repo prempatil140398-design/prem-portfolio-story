@@ -170,7 +170,54 @@ img{max-width:100%;display:block}
 .p-fact{display:flex;gap:12px;font-size:14px;color:var(--text-2)}
 .p-fact .k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--orange-text);text-transform:uppercase;letter-spacing:.1em;min-width:92px;padding-top:2px}
 
-/* ===== leadership ===== */
+/* ===== projects (new unified) ===== */
+.p-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.p-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.p-title-row .p-metric{flex-shrink:0}
+.p-card-summary{font-size:14.5px;color:var(--text-2);line-height:1.7;margin-bottom:20px}
+.p-expand-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 16px;background:transparent;border:1px solid var(--line);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--text-3);cursor:pointer;transition:all .2s var(--ease)}
+.p-expand-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(211,84,0,.05)}
+.p-expand-btn svg{flex-shrink:0}
+
+/* ===== project modal ===== */
+.project-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
+.project-modal.open{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:rgba(44,36,27,.7);backdrop-filter:blur(4px);animation:fadeIn .2s var(--ease)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-content{position:relative;z-index:1;width:100%;max-width:880px;max-height:85vh;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:slideUp .3s var(--ease);display:flex;flex-direction:column}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);font-size:24px;line-height:1;color:var(--text-2);cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{background:var(--orange);border-color:var(--orange);color:var(--bg)}
+.modal-body{padding:32px;overflow-y:auto;max-height:calc(85vh - 64px)}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.modal-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.modal-title-row .p-metric{flex-shrink:0}
+.modal-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-text);margin-bottom:8px;display:block}
+.modal-title{font-size:clamp(24px,3vw,34px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:0}
+.modal-section{margin-top:28px}
+.modal-section:first-of-type{margin-top:0}
+.modal-section-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-text);margin-bottom:12px;display:block}
+.modal-text{font-size:14.5px;color:var(--text-2);line-height:1.7}
+.modal-text p{margin-bottom:12px}
+.modal-text p:last-child{margin-bottom:0}
+.modal-text b{color:var(--ink);font-weight:600}
+.modal-text ul{list-style:none;padding-left:0;margin:12px 0}
+.modal-text li{position:relative;padding-left:20px;margin-bottom:8px;color:var(--text-2);line-height:1.6}
+.modal-text li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.modal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px}
+.modal-grid-item{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:16px}
+.modal-grid-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-text);margin-bottom:8px;display:block}
+.modal-grid-value{font-size:13.5px;color:var(--text-2);line-height:1.5}
+.modal-tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.modal-tech-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;color:var(--text-3);background:var(--bg-2);border:1px solid var(--line);padding:6px 12px;border-radius:6px}
+
+@media(max-width:768px){
+  .p-grid{grid-template-columns:1fr}
+  .p-card-header{flex-direction:column;align-items:flex-start}
+  .modal-content{margin:12px;max-height:calc(100vh - 24px)}
+  .modal-body{padding:24px}
+  .modal-grid{grid-template-columns:1fr}
+}
 .lead-statement{font-size:clamp(30px,4.6vw,58px);font-weight:700;letter-spacing:-.03em;line-height:1.12;color:var(--ink);max-width:900px}
 .lead-statement .accent{color:var(--orange)}
 .lead-points{margin-top:72px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -326,10 +373,11 @@ img{max-width:100%;display:block}
   <a href="#top" class="nav-logo">prem<span>.</span>patil</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#think">How I Think</a></li>
-    <li><a href="#decisions">Decisions</a></li>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#leadership">Leadership</a></li>
     <li><a href="#results">Results</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#tools">Tools</a></li>
   </ul>
   <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   <a href="#contact" class="nav-cta">Let's Talk</a>
@@ -377,153 +425,138 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<section class="section decision" id="decisions">
+<section class="section projects" id="projects">
   <div class="wrap">
-    <p class="chapter-no reveal">02 / Real Decisions</p>
-    <h2 class="big split reveal">Four decisions. One format.</h2>
-    <p class="lede reveal reveal-d1" style="margin-top:28px">Problem. Decision. Execution. Outcome. These are real calls I made while delivering production software, across four international projects.</p>
+    <p class="chapter-no reveal">02 / Projects</p>
+    <h2 class="big split reveal">Projects that <span class="accent\">prove the approach</span>.</h2>
+    <p class="lede reveal reveal-d1" style="margin-top:28px">Five projects across FinTech, AI Automation, TravelTech, FoodTech, and Education. Click any card for the full decision story and tech stack.</p>
 
-    <div class="d-stories">
-
-      <!-- STORY 1 -->
-      <article class="d-story" data-index="01">
-        <p class="d-story-no reveal">Decision 01</p>
-        <div class="d-story-head reveal">
-          <h3 class="d-story-title">Multi-Channel AI Sales Automation</h3>
-          <span class="d-story-tag">AI Automation / OyeLabs</span>
+    <div class="p-grid" id="projectsGrid">
+      <!-- 1. JennaHQ -->
+      <article class="p-card reveal" data-project="jennahq">
+        <div class="p-card-header">
+          <div>
+            <p class="p-card-tag">FinTech • AI Platform</p>
+            <div class="p-title-row">
+              <h3 class="p-card-title">JennaHQ</h3>
+              <span class="p-metric status-live">Ongoing</span>
+            </div>
+          </div>
         </div>
-        <p class="d-story-context reveal reveal-d1">Where a CRM becomes the risk, not the tool.</p>
-        <div class="d-quad">
-          <div class="dq reveal"><p class="dq-label">Problem</p><div class="dq-body"><p>The CEO wanted all lead data stored directly inside GoHighLevel. That created long-term risks:</p><ul><li>Sales users could accidentally delete leads</li><li>No centralized backup</li><li>Difficult salesperson management</li><li>Limited control over business data</li></ul></div></div>
-          <div class="dq reveal reveal-d1"><p class="dq-label">Decision</p><div class="dq-body"><p>Made <b>Supabase the centralized database</b>, with GoHighLevel acting only as the CRM layer. This gave permanent backup, better access control, easier salesperson management, and a scalable architecture for future automations.</p></div></div>
-          <div class="dq reveal reveal-d2"><p class="dq-label">Execution</p><div class="dq-body"><p>Every lead enters Supabase first. GoHighLevel synchronizes from Supabase instead of acting as the source of truth. Salesperson availability is managed directly from Supabase, so adding or removing team members never breaks the workflow.</p></div></div>
-          <div class="dq reveal reveal-d3"><p class="dq-label">Outcome</p><div class="dq-body"><p>Running in production for OyeLabs. The full sales pipeline operates with centralized data, improved security, and simplified administration.</p><span class="d-outcome-flag"><span class="k">Zero</span> lead miss, down from ~20%</span></div></div>
+        <p class="p-card-summary">AI-powered financial coaching platform combining an AI chat assistant with an AI Factory Pipeline that accelerates product development through multiple specialized AI agents. The platform focuses on personalized financial guidance, contextual conversations, and scalable AI-assisted software delivery. My work spans discovery, AI planning, delivery coordination, and roadmap execution for both the customer-facing AI experience and the internal AI development pipeline.</p>
+        <div class="p-card-metrics">
+          <span class="p-metric"><b>5,000+</b> active users</span>
+          <span class="p-metric"><b>10k–13k</b> monthly DB transactions</span>
+          <span class="p-metric"><b>8</b> engineers</span>
+          <span class="p-metric"><b>7–9</b> AI agents in Factory Pipeline</span>
         </div>
+        <div class="p-card-foot"><span class="p-delivery">Canada • OyeLabs Client</span></div>
+        <button class="p-expand-btn" aria-label="Expand JennaHQ details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="3" y2="21"/></svg><span>View Details</span></button>
       </article>
 
-      <!-- STORY 2 -->
-      <article class="d-story" data-index="02">
-        <p class="d-story-no reveal">Decision 02</p>
-        <div class="d-story-head reveal">
-          <h3 class="d-story-title">JennaHQ</h3>
-          <span class="d-story-tag">FinTech / Canada / via OyeLabs</span>
+      <!-- 2. Multi-Channel AI Sales Automation -->
+      <article class="p-card reveal reveal-d1" data-project="aisales">
+        <div class="p-card-header">
+          <div>
+            <p class="p-card-tag">AI Automation • CRM • Sales Operations</p>
+            <div class="p-title-row">
+              <h3 class="p-card-title">Multi-Channel AI Sales Automation</h3>
+              <span class="p-metric status-live">In Production</span>
+            </div>
+          </div>
         </div>
-        <p class="d-story-context reveal reveal-d1">When pausing work protects the client.</p>
-        <div class="d-quad">
-          <div class="dq reveal"><p class="dq-label">Problem</p><div class="dq-body"><p>The client provided only a <b>dummy database</b>. Starting AI development without validating production data could have meant rebuilding major components later.</p></div></div>
-          <div class="dq reveal reveal-d1"><p class="dq-label">Decision</p><div class="dq-body"><p>Paused implementation and recommended validating the <b>production database first</b>, before any AI development began.</p></div></div>
-          <div class="dq reveal reveal-d2"><p class="dq-label">Execution</p><div class="dq-body"><p>Prepared a discovery report, identified the dependency, and explained the delivery risks clearly to the client with evidence.</p></div></div>
-          <div class="dq reveal reveal-d3"><p class="dq-label">Outcome</p><div class="dq-body"><p>The client accepted the recommendation. The project continued with <b>zero blockers</b>, confirming that addressing the risk early prevented delays later.</p></div></div>
+        <p class="p-card-summary">AI-powered sales automation platform that centralizes leads from WhatsApp, website forms, and live chat into a single workflow. Built with Supabase as the centralized data layer and GoHighLevel as the CRM, enabling AI qualification, automated lead assignment, centralized management, and scalable sales operations.</p>
+        <div class="p-card-metrics">
+          <span class="p-metric">Multi-channel lead capture</span>
+          <span class="p-metric">Centralized CRM architecture</span>
+          <span class="p-metric">Production system</span>
+          <span class="p-metric">Internal OyeLabs pipeline</span>
         </div>
+        <div class="p-card-foot"><span class="p-delivery">Internal Automation • OyeLabs</span></div>
+        <button class="p-expand-btn" aria-label="Expand AI Sales Automation details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="3" y2="21"/></svg><span>View Details</span></button>
       </article>
 
-      <!-- STORY 3 -->
-      <article class="d-story" data-index="03">
-        <p class="d-story-no reveal">Decision 03</p>
-        <div class="d-story-head reveal">
-          <h3 class="d-story-title">Travolyo</h3>
-          <span class="d-story-tag">TravelTech / Saudi Arabia / via OyeLabs</span>
+      <!-- 3. Travolyo -->
+      <article class="p-card reveal" data-project="travolyo">
+        <div class="p-card-header">
+          <div>
+            <p class="p-card-tag">TravelTech</p>
+            <div class="p-title-row">
+              <h3 class="p-card-title">Travolyo</h3>
+              <span class="p-metric status-delivered">Delivered</span>
+            </div>
+          </div>
         </div>
-        <p class="d-story-context reveal reveal-d1">A 2-month deadline with no margin.</p>
-        <div class="d-quad">
-          <div class="dq reveal"><p class="dq-label">Problem</p><div class="dq-body"><p>A strict <b>2-month delivery timeline</b> with almost no margin for delay. Waiting for the complete UI design before development would have created unnecessary bottlenecks.</p></div></div>
-          <div class="dq reveal reveal-d1"><p class="dq-label">Decision</p><div class="dq-body"><p>Adopted an <b>Agile delivery approach</b>: development started as soon as the first approved screens were available, validating structure and functionality first and leaving visual refinements for later iterations.</p></div></div>
-          <div class="dq reveal reveal-d2"><p class="dq-label">Execution</p><div class="dq-body"><p>Ran design and development in parallel, keeping continuous progress across multiple workstreams without blocking either team.</p></div></div>
-          <div class="dq reveal reveal-d3"><p class="dq-label">Outcome</p><div class="dq-body"><p>Delivered the travel booking platform, including hotel, flight, villa, tour, and event modules, <b>within the committed timeline</b>.</p></div></div>
+        <p class="p-card-summary">End-to-end travel booking platform supporting hotel, flight, tour, villa, and event bookings. Delivered within a strict two-month timeline using Agile delivery by running design and development in parallel, enabling faster execution without compromising functional quality.</p>
+        <div class="p-card-metrics">
+          <span class="p-metric"><b>2-month</b> delivery</span>
+          <span class="p-metric"><b>5</b> booking modules</span>
+          <span class="p-metric"><b>7</b> team members</span>
+          <span class="p-metric">Saudi Arabia client</span>
         </div>
+        <div class="p-card-foot"><span class="p-delivery">Saudi Arabia • OyeLabs Client</span></div>
+        <button class="p-expand-btn" aria-label="Expand Travolyo details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="3" y2="21"/></svg><span>View Details</span></button>
       </article>
 
-      <!-- STORY 4 -->
-      <article class="d-story" data-index="04">
-        <p class="d-story-no reveal">Decision 04</p>
-        <div class="d-story-head reveal">
-          <h3 class="d-story-title">Hunger Point</h3>
-          <span class="d-story-tag">FoodTech / Lebanon / via OyeLabs</span>
+      <!-- 4. Hunger Point -->
+      <article class="p-card reveal reveal-d1" data-project="hungerpoint">
+        <div class="p-card-header">
+          <div>
+            <p class="p-card-tag">FoodTech</p>
+            <div class="p-title-row">
+              <h3 class="p-card-title">Hunger Point</h3>
+              <span class="p-metric status-delivered">Delivered</span>
+            </div>
+          </div>
         </div>
-        <p class="d-story-context reveal reveal-d1">Zero meetings. Zero blockers. Full delivery.</p>
-        <div class="d-quad">
-          <div class="dq reveal"><p class="dq-label">Problem</p><div class="dq-body"><p>The client preferred communicating only through <b>WhatsApp</b> and had limited technical knowledge. Traditional meetings and technical documentation would have slowed every decision.</p></div></div>
-          <div class="dq reveal reveal-d1"><p class="dq-label">Decision</p><div class="dq-body"><p>Built the entire process around <b>asynchronous collaboration</b>: bilingual documentation (English and Arabic) plus recorded product walkthrough videos with Arabic explanations.</p></div></div>
-          <div class="dq reveal reveal-d2"><p class="dq-label">Execution</p><div class="dq-body"><p>Every feature request, approval, credential request, and product update was documented in bilingual format. Communication stayed transparent without scheduled meetings.</p></div></div>
-          <div class="dq reveal reveal-d3"><p class="dq-label">Outcome</p><div class="dq-body"><p>Delivered the complete project in <b>4 months without a single client meeting</b>. Bilingual documentation improved client understanding and accelerated approvals.</p></div></div>
+        <p class="p-card-summary">Food ordering platform focused on improving order transparency and customer communication. Delivered entirely through asynchronous collaboration using bilingual documentation (English & Arabic) without conducting a single client meeting.</p>
+        <div class="p-card-metrics">
+          <span class="p-metric"><b>4-month</b> delivery</span>
+          <span class="p-metric"><b>0</b> client meetings</span>
+          <span class="p-metric"><b>4</b> team members</span>
+          <span class="p-metric">English & Arabic documentation</span>
         </div>
+        <div class="p-card-foot"><span class="p-delivery">Lebanon • OyeLabs Client</span></div>
+        <button class="p-expand-btn" aria-label="Expand Hunger Point details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="3" y2="21"/></svg><span>View Details</span></button>
       </article>
 
+      <!-- 5. MU Ideas -->
+      <article class="p-card reveal" data-project="muideas">
+        <div class="p-card-header">
+          <div>
+            <p class="p-card-tag">Education • Innovation Platform</p>
+            <div class="p-title-row">
+              <h3 class="p-card-title">MU Ideas</h3>
+              <span class="p-metric status-delivered">Delivered</span>
+            </div>
+          </div>
+        </div>
+        <p class="p-card-summary">Digital incubation platform developed for the University of Mumbai to support startup and innovation initiatives across affiliated colleges. Managed project planning, stakeholder coordination, roadmap planning, and delivery execution across multiple stakeholder groups.</p>
+        <div class="p-card-metrics">
+          <span class="p-metric"><b>800+</b> colleges</span>
+          <span class="p-metric">University of Mumbai</span>
+          <span class="p-metric">Multi-stakeholder project</span>
+          <span class="p-metric">Freelance PM Consultant</span>
+        </div>
+        <div class="p-card-foot"><span class="p-delivery">University of Mumbai • Freelance Consultant</span></div>
+        <button class="p-expand-btn" aria-label="Expand MU Ideas details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="3" y2="21"/></svg><span>View Details</span></button>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section projects" id="projects">
-  <div class="wrap">
-    <p class="chapter-no reveal">03 / The Work</p>
-    <h2 class="big split reveal">Proof behind the <span class="accent">thinking</span>.</h2>
-    <p class="lede reveal reveal-d1" style="margin-top:28px">The projects behind the decisions. Delivered end to end, across FinTech, TravelTech, FoodTech, and AI automation.</p>
-
-    <div class="p-grid">
-          <article class="p-card reveal">
-            <p class="p-card-tag">FinTech / AI</p>
-            <h3 class="p-card-title">JennaHQ</h3>
-            <div class="p-card-metrics">
-              <span class="p-metric"><b>5,000+</b> users</span>
-              <span class="p-metric"><b>10-13k</b> monthly DB transactions</span>
-              <span class="p-metric"><b>8</b> engineers</span>
-              <span class="p-metric"><b>6-month</b> roadmap</span>
-              <span class="p-metric status-live">Currently Ongoing</span>
-            </div>
-            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-          </article>
-
-          <article class="p-card reveal reveal-d1">
-            <p class="p-card-tag">AI Automation</p>
-            <h3 class="p-card-title">Multi-Channel AI Sales Automation</h3>
-            <div class="p-card-metrics">
-              <span class="p-metric"><b>0</b> lead miss</span>
-              <span class="p-metric">was <b>20%</b></span>
-              <span class="p-metric status-live">In Production</span>
-            </div>
-            <div class="p-card-foot"><span class="p-delivery">Internal pipeline, <b>OyeLabs</b></span></div>
-          </article>
-
-          <article class="p-card reveal">
-            <p class="p-card-tag">TravelTech</p>
-            <h3 class="p-card-title">Travolyo</h3>
-            <div class="p-card-metrics">
-              <span class="p-metric"><b>2-month</b> delivery</span>
-              <span class="p-metric"><b>5</b> booking modules</span>
-              <span class="p-metric status-delivered">Delivered</span>
-            </div>
-            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-          </article>
-
-          <article class="p-card reveal reveal-d1">
-            <p class="p-card-tag">FoodTech</p>
-            <h3 class="p-card-title">Hunger Point</h3>
-            <div class="p-card-metrics">
-              <span class="p-metric"><b>4-month</b> delivery</span>
-              <span class="p-metric"><b>0</b> meetings</span>
-              <span class="p-metric">Bilingual</span>
-              <span class="p-metric status-delivered">Delivered</span>
-            </div>
-            <div class="p-card-foot"><span class="p-delivery">Delivered via <b>OyeLabs</b></span></div>
-          </article>
-
-          <article class="p-card p-compact reveal">
-            <p class="p-card-tag">Enterprise / Public Sector</p>
-            <h3 class="p-card-title">MU Ideas</h3>
-            <p class="p-card-desc">Digital incubation platform for the University of Mumbai. Led delivery as a freelance project management consultant.</p>
-            <div class="p-facts">
-              <div class="p-fact"><span class="k">Impact</span><span>Active across <b>800+ colleges</b></span></div>
-              <div class="p-fact"><span class="k">Scope</span><span>Government project, multi-stakeholder (university, incubators, officials)</span></div>
-              <div class="p-fact"><span class="k">Delivery</span><span>Roadmap, sprint planning, requirements, and delivery coordination</span></div>
-            </div>
-            <div class="p-card-foot"><span class="p-delivery">Freelance Consultant</span></div>
-          </article>
-        </div>
-</section>
+<!-- Project Detail Modal -->
+<div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
 <section class="section" id="leadership">
   <div class="wrap">
-    <p class="chapter-no reveal">04 / Leadership</p>
+    <p class="chapter-no reveal">03 / Leadership</p>
     <h2 class="lead-statement split reveal">I don't manage people. I manage <span class="accent">delivery</span>.</h2>
     <div class="lead-points">
           <div class="lp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 11l2 2 4-4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2"/></svg></div><div><h4>Cross-functional coordination</h4><p>12+ team members: developers, QA, UI/UX designers, AI engineers, and business stakeholders.</p></div></div>
@@ -535,7 +568,7 @@ img{max-width:100%;display:block}
 
 <section class="section results" id="results">
   <div class="wrap">
-    <p class="chapter-no reveal">05 / Results</p>
+    <p class="chapter-no reveal">04 / Results</p>
     <h2 class="big split reveal">Numbers that <span class="accent" style="color:var(--orange)">survive</span> an interview.</h2>
     <div class="r-grid">
       <div class="r-item reveal"><div class="r-num"><span data-count="80">0</span><span class="u">%</span></div><p class="r-label">On-time delivery across client projects</p><p class="r-note">Tracked per sprint and milestone</p></div>
@@ -548,7 +581,7 @@ img{max-width:100%;display:block}
 
 <section class="section journey" id="journey">
   <div class="wrap journey-wrap">
-    <p class="chapter-no reveal">06 / The Journey</p>
+    <p class="chapter-no reveal">05 / The Journey</p>
     <h2 class="big split reveal">Four stages. One <span class="accent">compounding path.</span></h2>
     <p class="lede reveal reveal-d1" style="margin-top:28px">Operations to Founder to Enterprise Stakeholder to AI Project Management. Each stage built the muscle the next one needed.</p>
 
@@ -605,7 +638,7 @@ img{max-width:100%;display:block}
 
 <section class="section tools" id="tools">
   <div class="wrap tools-wrap">
-    <p class="chapter-no reveal">07 / Toolkit</p>
+    <p class="chapter-no reveal">06 / Toolkit</p>
     <h2 class="mid split reveal">The stack behind the delivery.</h2>
     <div class="orbit reveal" id="orbit">
       <div class="skills-sidebar left">
@@ -757,7 +790,7 @@ img{max-width:100%;display:block}
 
   /* ===== nav scrolled state + active link ===== */
   var nav = document.getElementById('nav');
-  var sections = ['think','decisions','projects','leadership','results'];
+  var sections = ['think','projects','leadership','results','journey','tools'];
   var linkMap = {};
   document.querySelectorAll('#navLinks a').forEach(function(a){
     var href = a.getAttribute('href').replace('#','');
@@ -918,6 +951,260 @@ img{max-width:100%;display:block}
         .from(story.querySelector('.d-story-title'), { x: -30, opacity: 0, duration: 0.6 }, '-=0.3');
     });
   }
+
+  /* ===== Project Modal ===== */
+  var projectData = {
+    jennahq: {
+      tag: 'FinTech • AI Platform',
+      title: 'JennaHQ',
+      status: 'Ongoing',
+      statusClass: 'status-live',
+      client: 'Canada • OyeLabs Client',
+      role: 'Associate Project Manager (leading AI delivery coordination and engineering execution)',
+      summary: 'AI-powered financial coaching platform combining an AI chat assistant with an AI Factory Pipeline that accelerates product development through multiple specialized AI agents. The platform focuses on personalized financial guidance, contextual conversations, and scalable AI-assisted software delivery. My work spans discovery, AI planning, delivery coordination, and roadmap execution for both the customer-facing AI experience and the internal AI development pipeline.',
+      productOverview: 'The platform consists of two major products: Jenna AI, an AI financial coaching assistant built with RAG/KAG architecture for personalized financial guidance, and the AI Factory Pipeline, a multi-agent software development workflow (7–9 AI agents) that automates the journey from PRD → Design → Development → QA → Merge, accelerating engineering delivery while maintaining quality.',
+      problem: 'The client initially provided only a dummy database. Beginning AI implementation without validating the production database could have resulted in incorrect architecture decisions, AI context issues, and significant rework during implementation.',
+      decision: 'Recommended validating the production database before beginning AI implementation and structured the project around a discovery-first approach to reduce delivery risk.',
+      execution: 'Prepared the discovery report, identified technical dependencies and delivery risks, coordinated with engineering teams, supported AI workflow planning, roadmap planning, sprint planning, and architecture discussions, and aligned stakeholders before implementation.',
+      outcome: 'The client accepted the recommendation. The project proceeded with a validated implementation strategy, structured roadmap, and continued execution without major delivery blockers.',
+      metrics: [
+        { label: 'Active Users', value: '5,000+' },
+        { label: 'Monthly DB Transactions', value: '10k–13k' },
+        { label: 'Engineering Team', value: '8 members' },
+        { label: 'AI Factory Pipeline', value: '7–9 AI agents' }
+      ],
+      techStack: ['FastAPI', 'React Native', 'TypeScript', 'Supabase', 'Claude (Amazon Bedrock)', 'OpenAI APIs', 'Git', 'GitHub', 'Figma', 'Jira']
+    },
+    aisales: {
+      tag: 'AI Automation • CRM • Sales Operations',
+      title: 'Multi-Channel AI Sales Automation',
+      status: 'In Production',
+      statusClass: 'status-live',
+      client: 'Internal Automation • OyeLabs',
+      role: 'Project Manager',
+      summary: 'AI-powered sales automation platform that centralizes leads from WhatsApp, website forms, and live chat into a single workflow. Built with Supabase as the centralized data layer and GoHighLevel as the CRM, enabling AI qualification, automated lead assignment, centralized management, and scalable sales operations.',
+      productOverview: '',
+      problem: 'The initial approach was to store all lead data directly in GoHighLevel. This introduced risks including accidental data deletion, limited access control, difficult salesperson management, and lack of centralized backup.',
+      decision: 'Proposed Supabase as the primary data source while using GoHighLevel purely as the CRM layer. This created centralized data management, permanent backup, role-based control, and scalable workflow management.',
+      execution: 'Designed the workflow architecture where every lead is stored in Supabase before synchronizing with GoHighLevel. Salesperson availability and assignment logic are managed centrally, allowing operational changes without modifying automation workflows.',
+      outcome: 'Successfully deployed into production for OyeLabs. The sales team now operates through a centralized AI-powered sales pipeline with improved data control, workflow scalability, and simplified administration.',
+      metrics: [
+        { label: 'Status', value: 'Production system' },
+        { label: 'Lead Capture', value: 'Multi-channel' },
+        { label: 'Architecture', value: 'Centralized CRM' },
+        { label: 'Pipeline', value: 'Internal OyeLabs' }
+      ],
+      techStack: ['n8n', 'Supabase', 'GoHighLevel', 'OpenAI API', 'WATI', 'WordPress', 'Tawk.to', 'Discord', 'Gmail']
+    },
+    travolyo: {
+      tag: 'TravelTech',
+      title: 'Travolyo',
+      status: 'Delivered',
+      statusClass: 'status-delivered',
+      client: 'Saudi Arabia • OyeLabs Client',
+      role: 'Project Manager',
+      summary: 'End-to-end travel booking platform supporting hotel, flight, tour, villa, and event bookings. Delivered within a strict two-month timeline using Agile delivery by running design and development in parallel, enabling faster execution without compromising functional quality.',
+      productOverview: '',
+      problem: 'Tight delivery timeline with almost no room for delay. Waiting for complete UI design before development would have slowed the project significantly.',
+      decision: 'Adopted parallel Agile execution by beginning development as soon as the first approved screens were available. Functional structure was prioritized first, while UI refinements were completed during later iterations.',
+      execution: 'Coordinated planning, sprint execution, stakeholder communication, and cross-functional delivery while managing parallel design and development activities.',
+      outcome: 'Successfully delivered the complete travel booking platform—including hotel, flight, tour, villa, and event booking modules—within the committed timeline.',
+      metrics: [
+        { label: 'Delivery Timeline', value: '2 months' },
+        { label: 'Booking Modules', value: '5' },
+        { label: 'Team Size', value: '7' },
+        { label: 'Client', value: 'Saudi Arabia' }
+      ],
+      techStack: ['PHP', 'Flutter']
+    },
+    hungerpoint: {
+      tag: 'FoodTech',
+      title: 'Hunger Point',
+      status: 'Delivered',
+      statusClass: 'status-delivered',
+      client: 'Lebanon • OyeLabs Client',
+      role: 'Project Manager',
+      summary: 'Food ordering platform focused on improving order transparency and customer communication. Delivered entirely through asynchronous collaboration using bilingual documentation (English & Arabic) without conducting a single client meeting.',
+      productOverview: '',
+      problem: 'The client preferred WhatsApp communication and had limited technical expertise, making traditional meetings and technical discussions inefficient.',
+      decision: 'Designed the delivery process around asynchronous communication, bilingual documentation, and recorded product walkthroughs to improve transparency and simplify approvals.',
+      execution: 'Managed requirement gathering through WhatsApp, prepared English and Arabic documentation, coordinated development activities, and recorded product demonstrations with Arabic explanations for client validation.',
+      outcome: 'Successfully delivered the platform within four months while maintaining clear communication and stakeholder alignment without any live client meetings.',
+      metrics: [
+        { label: 'Delivery Timeline', value: '4 months' },
+        { label: 'Client Meetings', value: '0' },
+        { label: 'Team Size', value: '4' },
+        { label: 'Documentation', value: 'English & Arabic' }
+      ],
+      techStack: ['PHP', 'Flutter']
+    },
+    muideas: {
+      tag: 'Education • Innovation Platform',
+      title: 'MU Ideas',
+      status: 'Delivered',
+      statusClass: 'status-delivered',
+      client: 'University of Mumbai • Freelance Consultant',
+      role: 'Freelance Project Management Consultant',
+      summary: 'Digital incubation platform developed for the University of Mumbai to support startup and innovation initiatives across affiliated colleges. Managed project planning, stakeholder coordination, roadmap planning, and delivery execution across multiple stakeholder groups.',
+      productOverview: '',
+      problem: 'Coordinating multiple university stakeholders with varying priorities while establishing a structured delivery process for a large-scale digital platform.',
+      decision: 'Established a structured project planning and delivery approach with clear stakeholder communication, roadmap planning, and sprint coordination to maintain alignment throughout execution.',
+      execution: 'Facilitated requirement gathering, coordinated with university stakeholders, managed project planning, sprint execution, and delivery activities throughout the project lifecycle.',
+      outcome: 'Successfully delivered the platform, supporting innovation initiatives across 800+ colleges.',
+      metrics: [
+        { label: 'Colleges Active', value: '800+' },
+        { label: 'Client', value: 'University of Mumbai' },
+        { label: 'Type', value: 'Multi-stakeholder project' },
+        { label: 'Role', value: 'Freelance PM Consultant' }
+      ],
+      techStack: ['Notion', 'Jira', 'Figma', 'Miro', 'Google Workspace']
+    }
+  };
+
+  var modal = document.getElementById('projectModal');
+  var modalBody = document.getElementById('modalBody');
+  var modalClose = modal ? modal.querySelector('.modal-close') : null;
+
+  function openModal(projectId) {
+    var data = projectData[projectId];
+    if (!data || !modal) return;
+
+    var html = '';
+
+    html += '<div class="modal-header">';
+    html += '  <div>';
+    html += '    <span class="modal-tag">' + data.tag + '</span>';
+    html += '    <div class="modal-title-row">';
+    html += '      <h2 class="modal-title" id="modalTitle">' + data.title + '</h2>';
+    html += '      <span class="p-metric ' + data.statusClass + '">' + data.status + '</span>';
+    html += '    </div>';
+    html += '  </div>';
+    html += '</div>';
+
+    html += '<div class="modal-section">';
+    html += '  <span class="modal-section-title">Summary</span>';
+    html += '  <div class="modal-text"><p>' + data.summary + '</p></div>';
+    html += '</div>';
+
+    if (data.productOverview) {
+      html += '<div class="modal-section">';
+      html += '  <span class="modal-section-title">Product Overview</span>';
+      html += '  <div class="modal-text"><p>' + data.productOverview + '</p></div>';
+      html += '</div>';
+    }
+
+    html += '<div class="modal-section">';
+    html += '  <span class="modal-section-title">Problem</span>';
+    html += '  <div class="modal-text"><p>' + data.problem + '</p></div>';
+    html += '</div>';
+
+    html += '<div class="modal-section">';
+    html += '  <span class="modal-section-title">Decision</span>';
+    html += '  <div class="modal-text"><p>' + data.decision + '</p></div>';
+    html += '</div>';
+
+    html += '<div class="modal-section">';
+    html += '  <span class="modal-section-title">Execution</span>';
+    html += '  <div class="modal-text"><p>' + data.execution + '</p></div>';
+    html += '</div>';
+
+    html += '<div class="modal-section">';
+    html += '  <span class="modal-section-title">Outcome</span>';
+    html += '  <div class="modal-text"><p>' + data.outcome + '</p></div>';
+    html += '</div>';
+
+    if (data.metrics && data.metrics.length) {
+      html += '<div class="modal-section">';
+      html += '  <span class="modal-section-title">Key Metrics</span>';
+      html += '  <div class="modal-grid">';
+      data.metrics.forEach(function(m) {
+        html += '    <div class="modal-grid-item">';
+        html += '      <span class="modal-grid-label">' + m.label + '</span>';
+        html += '      <span class="modal-grid-value">' + m.value + '</span>';
+        html += '    </div>';
+      });
+      html += '  </div>';
+      html += '</div>';
+    }
+
+    if (data.techStack && data.techStack.length) {
+      html += '<div class="modal-section">';
+      html += '  <span class="modal-section-title">Tech Stack</span>';
+      html += '  <div class="modal-tech-tags">';
+      data.techStack.forEach(function(tech) {
+        html += '    <span class="modal-tech-tag">' + tech + '</span>';
+      });
+      html += '  </div>';
+      html += '</div>';
+    }
+
+    if (data.role) {
+      html += '<div class="modal-section">';
+      html += '  <span class="modal-section-title">My Role</span>';
+      html += '  <div class="modal-text"><p>' + data.role + '</p></div>';
+      html += '</div>';
+    }
+
+    modalBody.innerHTML = html;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Focus trap
+    var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    var firstFocusable = focusable[0];
+    var lastFocusable = focusable[focusable.length - 1];
+    firstFocusable?.focus();
+
+    modal._focusTrap = function(e) {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable?.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
+      if (e.key === 'Escape') closeModal();
+    };
+    document.addEventListener('keydown', modal._focusTrap);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (modal._focusTrap) {
+      document.removeEventListener('keydown', modal._focusTrap);
+      modal._focusTrap = null;
+    }
+  }
+
+  // Event listeners
+  document.querySelectorAll('.p-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var card = btn.closest('.p-card');
+      var projectId = card ? card.getAttribute('data-project') : null;
+      if (projectId) openModal(projectId);
+    });
+  });
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) {
+    modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+  }
+
+  // Keyboard accessibility for cards
+  document.querySelectorAll('.p-card').forEach(function(card) {
+    card.addEventListener('keydown', function(e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+        e.preventDefault();
+        var btn = card.querySelector('.p-expand-btn');
+        btn?.click();
+      }
+    });
+    card.setAttribute('tabindex', '0');
+  });
 })();
 </script>
 </body>
