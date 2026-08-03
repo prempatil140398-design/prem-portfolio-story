@@ -184,11 +184,11 @@ img{max-width:100%;display:block}
 .project-modal.open{display:flex}
 .modal-backdrop{position:absolute;inset:0;background:rgba(44,36,27,.7);backdrop-filter:blur(4px);animation:fadeIn .2s var(--ease)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-content{position:relative;z-index:1;width:100%;max-width:880px;max-height:85vh;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:slideUp .3s var(--ease);display:flex;flex-direction:column}
+.modal-content{position:relative;z-index:1;width:100%;max-width:880px;max-height:85vh;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:slideUp .3s var(--ease);display:flex;flex-direction:column;touch-action:auto}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .modal-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);font-size:24px;line-height:1;color:var(--text-2);cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .modal-close:hover{background:var(--orange);border-color:var(--orange);color:var(--bg)}
-.modal-body{padding:32px;overflow-y:auto;max-height:calc(85vh - 64px)}
+.modal-body{padding:32px;overflow-y:auto;max-height:calc(85vh - 64px);-webkit-overflow-scrolling:touch;touch-action:auto;overscroll-behavior:contain}
 .modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .modal-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .modal-title-row .p-metric{flex-shrink:0}
@@ -592,7 +592,7 @@ img{max-width:100%;display:block}
         <div class="j-dot"></div>
         <div class="j-card">
           <h3 class="j-title">Operations Foundation</h3>
-          <p class="j-body">Saraswati Engineering Works — Managed day-to-day business operations, client communication, procurement coordination, vendor management, and delivery follow-ups. Built the execution and stakeholder foundation that later became the core of project management.</p>
+          <p class="j-body">Saraswati Engineering Works – Managed day-to-day business operations, client communication, procurement coordination, vendor management, and delivery follow-ups. Built the execution and stakeholder foundation that later became the core of project management.</p>
           <span class="j-tag">Assistant Manager</span>
         </div>
       </article>
@@ -601,8 +601,8 @@ img{max-width:100%;display:block}
         <div class="j-dot"></div>
         <div class="j-card">
           <h3 class="j-title">Founder Mindset</h3>
-          <p class="j-body">AI Chef Master — Founded and ran a food-tech venture from 0 to 1: end-to-end product-to-delivery ownership (requirements to roadmap to execution planning). Owned P&L thinking without a safety net. Learned technology is the easy part; aligning people, budgets, and expectations is the real work.</p>
-          <span class="j-tag">Founder — Product & Operations</span>
+          <p class="j-body">AI Chef Master – Founded and ran a food-tech venture from 0 to 1: end-to-end product-to-delivery ownership (requirements to roadmap to execution planning). Owned P&L thinking without a safety net. Learned technology is the easy part; aligning people, budgets, and expectations is the real work.</p>
+          <span class="j-tag">Founder – Product & Operations</span>
         </div>
       </article>
 
@@ -610,7 +610,7 @@ img{max-width:100%;display:block}
         <div class="j-dot"></div>
         <div class="j-card">
           <h3 class="j-title">Enterprise Stakeholder Management</h3>
-          <p class="j-body">University of Mumbai (Freelance) — Led delivery of a digital incubation platform across 800+ colleges. Orchestrated university, government, and incubator stakeholders. Translated founder-level ownership into enterprise governance, scope control, and multi-party delivery.</p>
+          <p class="j-body">University of Mumbai (Freelance) – Led delivery of a digital incubation platform across 800+ colleges. Orchestrated university, government, and incubator stakeholders. Translated founder-level ownership into enterprise governance, scope control, and multi-party delivery.</p>
           <span class="j-tag">Project Management Consultant</span>
         </div>
       </article>
@@ -619,7 +619,7 @@ img{max-width:100%;display:block}
         <div class="j-dot"></div>
         <div class="j-card">
           <h3 class="j-title">Project Management Foundations</h3>
-          <p class="j-body">OyeLabs — Leading a 6-engineer AI/automation team, facilitating Agile ceremonies, and coordinating end-to-end delivery of 4 client AI projects (FinTech, TravelTech, FoodTech). Building hands-on project management capability: scoping, sequencing, de-risking initiatives, translating complex requirements into execution plans engineering teams can ship.</p>
+          <p class="j-body">OyeLabs – Leading a 6-engineer AI/automation team, facilitating Agile ceremonies, and coordinating end-to-end delivery of 4 client AI projects (FinTech, TravelTech, FoodTech). Building hands-on project management capability: scoping, sequencing, de-risking initiatives, translating complex requirements into execution plans engineering teams can ship.</p>
           <span class="j-tag">Associate Project Manager</span>
         </div>
       </article>
@@ -1008,7 +1008,7 @@ img{max-width:100%;display:block}
       problem: 'Tight delivery timeline with almost no room for delay. Waiting for complete UI design before development would have slowed the project significantly.',
       decision: 'Adopted parallel Agile execution by beginning development as soon as the first approved screens were available. Functional structure was prioritized first, while UI refinements were completed during later iterations.',
       execution: 'Coordinated planning, sprint execution, stakeholder communication, and cross-functional delivery while managing parallel design and development activities.',
-      outcome: 'Successfully delivered the complete travel booking platform—including hotel, flight, tour, villa, and event booking modules—within the committed timeline.',
+      outcome: 'Successfully delivered the complete travel booking platform – including hotel, flight, tour, villa, and event booking modules – within the committed timeline.',
       metrics: [
         { label: 'Delivery Timeline', value: '2 months' },
         { label: 'Booking Modules', value: '5' },
@@ -1149,6 +1149,11 @@ img{max-width:100%;display:block}
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
+    // Stop Lenis smooth scroll when modal is open
+    if (lenis) {
+      lenis.stop();
+    }
+
     // Focus trap
     var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     var firstFocusable = focusable[0];
@@ -1174,6 +1179,12 @@ img{max-width:100%;display:block}
     if (!modal) return;
     modal.classList.remove('open');
     document.body.style.overflow = '';
+
+    // Restart Lenis smooth scroll when modal closes
+    if (lenis) {
+      lenis.start();
+    }
+
     if (modal._focusTrap) {
       document.removeEventListener('keydown', modal._focusTrap);
       modal._focusTrap = null;
