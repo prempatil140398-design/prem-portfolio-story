@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Prem Patil — Resume Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FCF9F5;--cream-2:#F8F4EE;--cream-3:#EFE9DF;
+  --orange:#D35400;--orange-hover:#B84A00;--orange-soft:rgba(211,84,0,0.08);
+  --orange-text:#BF4A00;
+  --dark:#2C241B;--muted:#6B6258;--faint:#766C60;
+  --border:#EFE9DF;--radius:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#EFE9DF;
+  color:var(--dark);
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  font-size:14px;
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible,.focusable:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:4px}
+ul{list-style:none}
+
+/* ===== PREVIEW TOOLBAR ===== */
+.preview-toolbar{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:16px 24px;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+@media print{.preview-toolbar{display:none!important}}
+.toolbar-group{display:flex;align-items:center;gap:8px}
+.toolbar-group.divider::before{
+  content:'';width:1px;height:24px;background:var(--border);margin-left:8px;padding-left:8px
+}
+.toolbar-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.09em;
+  color:var(--faint);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:8px;
+  font-size:13px;font-weight:500;
+  border:1px solid transparent;
+  cursor:pointer;transition:all 0.25s ease;
+  background:var(--dark);color:var(--cream);
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(44,36,27,0.18)}
+.btn svg{width:14px;height:14px}
+.btn-outline{background:transparent;color:var(--dark);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-soft)}
+.btn-ghost{background:transparent;color:var(--muted);border-color:transparent;padding:8px 12px}
+.btn-ghost:hover{color:var(--orange);background:var(--orange-soft)}
+.btn-ghost.active{color:var(--orange);background:var(--orange-soft)}
+.zoom-control{display:flex;align-items:center;gap:8px;background:var(--cream-2);border:1px solid var(--border);border-radius:8px;padding:4px 8px}
+.zoom-btn{width:32px;height:32px;border:0;background:transparent;color:var(--muted);cursor:pointer;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.zoom-btn:hover{background:var(--orange-soft);color:var(--orange)}
+.zoom-value{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--dark);min-width:48px;text-align:center}
+
+/* ===== PREVIEW CANVAS ===== */
+.preview-canvas{
+  display:flex;justify-content:center;align-items:flex-start;
+  padding:40px 24px 80px;
+  min-height:calc(100vh - 80px);
+}
+.preview-sheet{
+  width:100%;max-width:850px;
+  background:var(--cream);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(44,36,27,0.10),0 2px 8px rgba(44,36,27,0.06);
+  transform-origin:top center;
+  transition:transform 0.2s ease;
+}
+.preview-sheet.compact{box-shadow:0 4px 20px rgba(44,36,27,0.08)}
+
+/* ===== RESUME STYLES (from resume.html) ===== */
+.sheet{max-width:100%;margin:0;border-radius:0;box-shadow:none}
+@media print{.sheet{max-width:100%;margin:0;border-radius:0;box-shadow:none}body{background:#fff}.no-print{display:none!important}@page{size:A4;margin:12mm}}
+
+/* ===== HEADER ===== */
+.header{display:flex;gap:32px;align-items:center;padding:40px 48px 32px;background:linear-gradient(135deg,var(--cream) 0%,var(--cream-2) 60%,var(--cream-3) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:2px solid rgba(211,84,0,0.10);pointer-events:none}
+.header::before{content:'';position:absolute;right:40px;bottom:-80px;width:160px;height:160px;border-radius:50%;border:2px dashed rgba(211,84,0,0.08);pointer-events:none}
+.avatar{flex-shrink:0;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--orange);box-shadow:0 4px 16px rgba(211,84,0,0.18);background:#fff;transition:transform 0.3s ease}
+.avatar:hover{transform:scale(1.03)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--orange),var(--orange-hover));color:var(--cream);font-size:48px;font-weight:700;letter-spacing:-0.02em}
+.header-main{flex:1}
+.header-name{font-size:32px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-bottom:2px}
+.header-role{font-size:15px;font-weight:600;color:var(--orange-text);margin-bottom:10px}
+.header-contact{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
+.header-contact span{display:inline-flex;align-items:center;gap:5px}
+.header-contact svg{width:13px;height:13px;color:var(--orange);flex-shrink:0}
+.header-contact a{transition:color 0.2s ease}
+.header-contact a:hover{color:var(--orange)}
+
+/* ===== BODY LAYOUT ===== */
+.body{display:grid;grid-template-columns:1fr 2fr;gap:0}
+.col{padding:28px 32px 32px}
+.col-left{background:var(--cream-2);border-right:1px solid var(--border)}
+@media print{.col-left{background:var(--cream-2)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.col-right{padding-top:32px}
+
+/* ===== SECTION ===== */
+.section{margin-bottom:26px}
+.section:last-child{margin-bottom:0}
+.section-title{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;color:var(--orange-text);margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.section-title svg{width:13px;height:13px;flex-shrink:0}
+
+/* ===== CONTACT BLOCK ===== */
+.contact-block{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.contact-row{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--muted);line-height:1.45}
+.contact-row svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px}
+.contact-row a:hover{color:var(--orange)}
+
+/* ===== SKILLS ===== */
+.skill-group{margin-bottom:14px}
+.skill-group:last-child{margin-bottom:0}
+.skill-group-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--faint);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.skill-tag{font-size:11px;font-weight:500;padding:4px 9px;border-radius:20px;background:var(--cream);border:1px solid var(--border);color:var(--muted);transition:all 0.2s ease}
+.skill-tag:hover{background:var(--orange-soft);border-color:var(--orange);color:var(--orange)}
+@media print{.skill-tag{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ===== SUMMARY ===== */
+.summary{font-size:13px;color:var(--muted);line-height:1.65}
+.summary strong{color:var(--dark);font-weight:600}
+
+/* ===== EXPERIENCE ===== */
+.job{margin-bottom:24px;position:relative;padding-left:16px}
+.job:last-child{margin-bottom:0}
+.job::before{content:'';position:absolute;left:0;top:6px;width:3px;height:calc(100% - 12px);border-radius:2px;background:linear-gradient(180deg,var(--orange),rgba(211,84,0,0.15))}
+.job-role{font-size:15px;font-weight:600;color:var(--dark);line-height:1.3}
+.job-company{font-size:13px;font-weight:500;color:var(--orange-text);margin-top:1px}
+.job-meta{font-size:11px;color:var(--faint);font-family:'JetBrains Mono',monospace;margin:3px 0 8px}
+.job-bullets{display:flex;flex-direction:column;gap:5px}
+.job-bullets li{font-size:12.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative}
+.job-bullets li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--orange);opacity:0.5}
+
+/* ===== EDUCATION / CERTS ===== */
+.edu{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.edu strong{color:var(--dark);display:block;font-size:13px}
+.edu span{display:block;font-size:11px;color:var(--faint);margin-top:1px}
+.cert{font-size:12px;color:var(--muted);padding:7px 10px;border-radius:8px;background:var(--cream);border:1px solid var(--border);margin-bottom:6px;transition:all 0.2s ease;display:flex;gap:8px;align-items:center}
+.cert:last-child{margin-bottom:0}
+.cert:hover{border-color:var(--orange);background:var(--orange-soft)}
+.cert svg{width:13px;height:13px;color:var(--orange);flex-shrink:0}
+.cert-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:5px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .body{grid-template-columns:1fr}
+  .col-left{border-right:none;border-bottom:1px solid var(--border)}
+  .header{flex-direction:column;text-align:center;padding:32px 24px 24px}
+  .header-contact{justify-content:center}
+  .sheet{margin:16px;border-radius:12px}
+  .preview-toolbar{padding:12px 16px}
+  .preview-canvas{padding:20px 16px 60px}
+}
+@media(max-width:480px){
+  .header-name{font-size:26px}
+  .col{padding:22px 20px}
+  .zoom-control{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ===== DARK MODE PREVIEW ===== */
+body.dark-preview{
+  background:#1a1612;
+}
+body.dark-preview .preview-toolbar{
+  background:#1a1612;border-bottom-color:#3d342a;
+}
+body.dark-preview .preview-sheet{
+  background:#231e18;
+  box-shadow:0 8px 40px rgba(0,0,0,0.4),0 2px 8px rgba(0,0,0,0.3);
+}
+body.dark-preview .zoom-control{
+  background:#2d2720;border-color:#3d342a;
+}
+
+/* ===== KEYBOARD HINT ===== */
+.kbd-hint{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--faint);
+  padding:4px 8px;background:var(--cream-2);border-radius:6px;
+  border:1px solid var(--border);
+}
+kbd{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 6px;background:var(--cream-3);border:1px solid var(--border);border-radius:4px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- PREVIEW TOOLBAR -->
+<div class="preview-toolbar" role="toolbar" aria-label="Resume preview controls">
+  <div class="toolbar-group">
+    <span class="toolbar-label">Preview</span>
+    <button class="btn" onclick="window.print()" title="Print / Save as PDF (⌘/Ctrl+P)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      Save as PDF
+    </button>
+  </div>
+
+  <div class="toolbar-group divider">
+    <span class="toolbar-label">Zoom</span>
+    <div class="zoom-control">
+      <button class="zoom-btn" onclick="adjustZoom(-0.1)" aria-label="Zoom out" title="Zoom out (⌘/Ctrl+-)">−</button>
+      <span class="zoom-value" id="zoomValue">100%</span>
+      <button class="zoom-btn" onclick="adjustZoom(0.1)" aria-label="Zoom in" title="Zoom in (⌘/Ctrl++)">+</button>
+      <button class="zoom-btn" onclick="resetZoom()" aria-label="Reset zoom" title="Reset zoom (⌘/Ctrl+0)">⟲</button>
+    </div>
+  </div>
+
+  <div class="toolbar-group divider">
+    <span class="toolbar-label">View</span>
+    <button class="btn-ghost" onclick="toggleViewMode('full')" id="viewFull" aria-pressed="true" title="Full A4 view">Full</button>
+    <button class="btn-ghost" onclick="toggleViewMode('compact')" id="viewCompact" aria-pressed="false" title="Compact view (no margins)">Compact</button>
+    <button class="btn-ghost" onclick="toggleDarkMode()" id="btnDarkMode" aria-pressed="false" title="Toggle dark preview (D)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <span id="darkModeText">Dark</span>
+    </button>
+  </div>
+
+  <div class="toolbar-group divider">
+    <span class="kbd-hint"><kbd>⌘/Ctrl</kbd>+<kbd>P</kbd> Print &nbsp; <kbd>⌘/Ctrl</kbd>+<kbd>+/-</kbd> Zoom &nbsp; <kbd>D</kbd> Dark mode</span>
+  </div>
+
+  <div style="flex:1"></div>
+
+  <div class="toolbar-group">
+    <a href="index.html" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Portfolio
+    </a>
+  </div>
+</div>
+
+<!-- PREVIEW CANVAS -->
+<div class="preview-canvas" id="previewCanvas">
+  <div class="preview-sheet" id="previewSheet">
+    <!-- Resume content injected here -->
+  </div>
+</div>
+
+<script>
+// Resume data - single source of truth
+const resumeData = {
+  name: "Prem Patil",
+  role: "Associate Project Manager / Project Manager",
+  location: "Mumbai, India",
+  email: "prempatil140398@gmail.com",
+  linkedin: "linkedin.com/in/prem-patil143",
+  phone: "+91 84338 90622",
+  photo: "assets/resume-photo.png", // will fallback to initials if not found
+  skills: [
+    { group: "Project Management", tags: ["Agile Delivery","Sprint Planning","Risk Management","Stakeholder Mgmt","Release Planning","Resource Planning"] },
+    { group: "AI and Automation", tags: ["AI Workflow Planning","Process Automation","n8n","RAG Planning","AI Evaluation","Prompt Strategy","LLM Integration","Human-in-the-loop"] },
+    { group: "Tools", tags: ["Jira","Figma","Miro","Trello","Notion","Confluence","Draw.io","Git","Supabase"] },
+    { group: "Domain", tags: ["FinTech","HealthTech","TravelTech","FoodTech","SaaS","Enterprise"] }
+  ],
+  education: [
+    { degree: "B.Sc. Information Technology", school: "Shankar Narayan College of Arts & Commerce, Mumbai", period: "Jul 2017 - Apr 2020" }
+  ],
+  certifications: [
+    "PMI - CPMAI Introduction (3 PDUs)",
+    "Anthropic - Introduction to Agent Skills",
+    "Anthropic - Building with the Claude API",
+    "Anthropic - Claude Code in Action",
+    "Anthropic - Model Context Protocol (MCP)"
+  ],
+  summary: `Associate Project Manager with <strong>3+ years</strong> delivering AI automation and software projects. Proven track record leading AI engineering teams, designing AI workflow solutions, and building standardized delivery processes. Currently leading the AI department at OyeLabs, managing a team of <strong>6 AI engineers</strong> and driving end-to-end execution across FinTech, HealthTech, FoodTech, and TravelTech.`,
+  experience: [
+    {
+      role: "AI Project Management Foundations",
+      company: "OyeLabs Technologies Pvt. Ltd. (Remote)",
+      meta: "",
+      bullets: [
+        "Lead the AI department managing 4 AI Engineers and 2 AI Automation Engineers; oversee end-to-end delivery of AI automation projects across FinTech, HealthTech, FoodTech, and TravelTech.",
+        "Delivered Multi-Channel AI Sales Lead Automation using n8n + GoHighLevel; automated capture across WhatsApp, web forms, and live chat with AI qualification, language detection, deduplication, and smart assignment; achieved zero lead miss rate.",
+        "Standardized AI automation delivery with a 7-phase framework (Research, Requirements, QA and Gap Analysis, Risk Assessment, Solution Planning, Execution, Testing) plus reusable SOP templates, node-level technical documentation, and prompt libraries adopted across the AI department.",
+        "Managed a 12-person cross-functional team across 4+ concurrent client projects with 80% on-time delivery rate.",
+        "Identified critical data access and AI expertise gaps during FinTech AI platform discovery; restructured roadmap into phased milestones, preventing rework from production schema mismatches.",
+        "Facilitated end-to-end client engagement for 5+ organizations; led discovery workshops, sprint planning, weekly status meetings, milestone reviews, and delivery discussions.",
+        "Authored 50+ structured product documents including PRDs, user stories, functional specs, architecture diagrams, discovery reports, and roadmaps."
+      ]
+    },
+    {
+      role: "Enterprise Stakeholder Management",
+      company: "University of Mumbai (Freelance)",
+      meta: "",
+      bullets: [
+        "Led delivery of a digital incubation platform now active across 800+ affiliated colleges; coordinated university stakeholders, incubator managers, and government officials.",
+        "Facilitated roadmap planning, sprint planning, requirement gathering, and delivery coordination for a large multi-stakeholder project.",
+        "Managed scope, risk, and stakeholder communication across the full project lifecycle."
+      ]
+    },
+    {
+      role: "Founder, Product and Operations",
+      company: "AI Chef Master",
+      meta: "",
+      bullets: [
+        "Conducted market research and customer validation for an AI-powered cooking and nutrition assistant.",
+        "Owned product planning, PRDs, wireframing, prototype planning, and feature prioritization.",
+        "Developed business plan, product roadmap, and go-to-market strategy, demonstrating end-to-end product thinking."
+      ]
+    },
+    {
+      role: "Operations Foundation",
+      company: "Saraswati Engineering Works",
+      meta: "",
+      bullets: [
+        "Managed client communication and vendor relationships; coordinated delivery timelines and procurement follow-up.",
+        "Provided operations support for engineering projects, ensuring timely delivery and stakeholder alignment."
+      ]
+    }
+  ]
+};
+
+// ---- Render functions ----
+function renderResume() {
+  const sheet = document.getElementById('previewSheet');
+  sheet.innerHTML = buildResumeHTML();
+  // Check if photo exists, fallback to initials
+  const img = sheet.querySelector('.avatar img');
+  if (img) {
+    img.onerror = () => {
+      img.style.display = 'none';
+      img.parentElement.innerHTML += '<div class="avatar-placeholder">PP</div>';
+    };
+  }
+}
+
+function buildResumeHTML() {
+  const d = resumeData;
+  return `
+    <div class="sheet">
+      <header class="header">
+        <div class="avatar">
+          <img src="${d.photo}" alt="${d.name}" width="120" height="120" loading="lazy">
+        </div>
+        <div class="header-main">
+          <h1 class="header-name">${d.name}</h1>
+          <div class="header-role">${d.role}</div>
+          <div class="header-contact">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${d.location}</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 4 12 13 2 4"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:${d.email}">${d.email}</a></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v6"/><path d="M8 8v.01"/><path d="M12 17v-5"/><path d="M16 17v-3a2 2 0 00-4 0"/></svg><a href="https://${d.linkedin}" target="_blank" rel="noopener">${d.linkedin}</a></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg>${d.phone}</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="body">
+        <!-- LEFT COLUMN -->
+        <aside class="col col-left">
+          <div class="contact-block">
+            <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${d.location}</div>
+            <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 4 12 13 2 4"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:${d.email}">${d.email}</a></div>
+            <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg><span>${d.phone}</span></div>
+            <div class="contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v6"/><path d="M8 8v.01"/><path d="M12 17v-5"/><path d="M16 17v-3a2 2 0 00-4 0"/></svg><a href="https://${d.linkedin}" target="_blank" rel="noopener">${d.linkedin}</a></div>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Skills</div>
+            ${d.skills.map(g => `
+              <div class="skill-group">
+                <div class="skill-group-label">${g.group}</div>
+                <div class="skill-tags">${g.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="section">
+            <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Education</div>
+            ${d.education.map(e => `
+              <div class="edu"><strong>${e.degree}</strong>${e.school}<span>${e.period}</span></div>
+            `).join('')}
+          </div>
+
+          <div class="section">
+            <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg>Certifications</div>
+            ${d.certifications.map(c => `<div class="cert"><span class="cert-dot"></span>${c}</div>`).join('')}
+          </div>
+        </aside>
+
+        <!-- RIGHT COLUMN -->
+        <main class="col col-right">
+          <div class="section">
+            <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="9" r="2.5"/></svg>Profile</div>
+            <p class="summary">${d.summary}</p>
+          </div>
+
+          <div class="section">
+            <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 13.3A8 8 0 016.7 3a8 8 0 1014.3 10.3z"/></svg>Experience</div>
+            ${d.experience.map(job => `
+              <div class="job">
+                <div class="job-role">${job.role}</div>
+                <div class="job-company">${job.company}</div>
+                ${job.meta ? `<div class="job-meta">${job.meta}</div>` : ''}
+                <ul class="job-bullets">${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+              </div>
+            `).join('')}
+          </div>
+        </main>
+      </div>
+    </div>
+  `;
+}
+
+// ---- Toolbar interactions ----
+let currentZoom = 1;
+const sheet = document.getElementById('previewSheet');
+const zoomValue = document.getElementById('zoomValue');
+const canvas = document.getElementById('previewCanvas');
+
+function adjustZoom(delta) {
+  currentZoom = Math.max(0.5, Math.min(2, currentZoom + delta));
+  updateZoom();
+}
+
+function resetZoom() {
+  currentZoom = 1;
+  updateZoom();
+}
+
+function updateZoom() {
+  sheet.style.transform = `scale(${currentZoom})`;
+  zoomValue.textContent = Math.round(currentZoom * 100) + '%';
+}
+
+function toggleViewMode(mode) {
+  const fullBtn = document.getElementById('viewFull');
+  const compactBtn = document.getElementById('viewCompact');
+  if (mode === 'compact') {
+    sheet.classList.add('compact');
+    canvas.style.padding = '20px 16px 60px';
+    fullBtn.classList.remove('active'); fullBtn.setAttribute('aria-pressed','false');
+    compactBtn.classList.add('active'); compactBtn.setAttribute('aria-pressed','true');
+  } else {
+    sheet.classList.remove('compact');
+    canvas.style.padding = '40px 24px 80px';
+    fullBtn.classList.add('active'); fullBtn.setAttribute('aria-pressed','true');
+    compactBtn.classList.remove('active'); compactBtn.setAttribute('aria-pressed','false');
+  }
+}
+
+function toggleDarkMode() {
+  const body = document.body;
+  const btn = document.getElementById('btnDarkMode');
+  const text = document.getElementById('darkModeText');
+  const isDark = body.classList.toggle('dark-preview');
+  btn.classList.toggle('active', isDark);
+  btn.setAttribute('aria-pressed', isDark);
+  text.textContent = isDark ? 'Light' : 'Dark';
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Ctrl/Cmd + P = Print
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+    e.preventDefault();
+    window.print();
+  }
+  // Ctrl/Cmd + +/- = Zoom
+  if ((e.ctrlKey || e.metaKey) && (e.key === '=' || e.key === '+')) {
+    e.preventDefault();
+    adjustZoom(0.1);
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === '-') {
+    e.preventDefault();
+    adjustZoom(-0.1);
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === '0') {
+    e.preventDefault();
+    resetZoom();
+  }
+  // D = Dark mode
+  if (e.key.toLowerCase() === 'd' && !(e.ctrlKey || e.metaKey || e.altKey)) {
+    // Only if not in input
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      toggleDarkMode();
+    }
+  }
+});
+
+// Initialize
+renderResume();
+</script>
+</body>
+</html>
